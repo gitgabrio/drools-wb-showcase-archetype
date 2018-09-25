@@ -34,24 +34,10 @@ Run the project
 
 Navigate to newly created project directory (my-artifactId) and then run:
 
-    mvn -DskipTests compile gwt:run
+    mvn clean process-resources -DskipTests compile gwt:run
     
 Test in the browser
 -------------------
 
-http://localhost:8080/MyArtifact
-
-Implementation details
-----------------------
-For the client side the eventbus architecture has been used to allow component decoupling.
- 
-For the server side the components are managed by the Spring framework.
-
-About the container
--------------------
-The application makes use of the new Servlet 3.0 specification, i.e. it does not use web.xml but it is completely managed by annotation. 
-The drawback of this approach is that (currently) it does not run inside the Jetty server (embedded with the GWT environment) so Tomcat should be used for development. 
-The generated Readme.md contains detailed instructions on how to cope with that.
-
-
+http://localhost:8888/drools-wb-showcase.html
 
