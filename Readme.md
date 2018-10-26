@@ -8,10 +8,13 @@ This archetype will create a simple Showcase for a Drools Workbench screen. The 
 
 Create a project
 ----------------
+
+Inside the drools-wb/drools-wb-showcases directory, issue the following command
+
     mvn archetype:generate \
         -DarchetypeGroupId=org.drools \
         -DarchetypeArtifactId=drools-wb-showcase-archetype \
-        -DarchetypeVersion=7.12.0-SNAPSHOT \
+        -DarchetypeVersion=7.14.0-SNAPSHOT \
         -DgroupId=my.groupid \
         -DartifactId=MyArtifact \
         -Dversion=(parent_version) \
@@ -27,6 +30,9 @@ Note: The above command will bootstrap a project using the archetype published h
 screenModule: e.g. drools-wb-scenario-simulation-editor
 modulePackage: e.g. org.drools.workbench.screens.scenariosimulation
 baseModuleName: e.g. DroolsWorkbenchScenarioSimulationEditor (common part for both DroolsWorkbenchScenarioSimulationEditorAPI and DroolsWorkbenchScenarioSimulationEditorClient)
+
+
+ mvn archetype:generate -DarchetypeGroupId=org.drools -DarchetypeArtifactId=drools-wb-showcase-archetype -DarchetypeVersion=7.14.0-SNAPSHOT -DartifactId=drools-wb-enum-editor-showcase -DgroupId=org.drools  -Dversion=7.14.0-SNAPSHOT -DartifactName="Drools WB - Enum Editor Showcase" -DartifactDescription="Drools WB - Enum Editor Showcase" -DscreenModule=drools-wb-enum-editor -DmodulePackage=org.drools.workbench.screens.enums -DbaseModuleName=DroolsWorkbenchEnumEditor
 
 
 Run the project

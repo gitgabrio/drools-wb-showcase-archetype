@@ -316,6 +316,31 @@
       <artifactId>drools-workbench-models-commons</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-guided-dtable</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-guided-dtree</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-guided-scorecard</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-guided-template</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-test-scenarios</artifactId>
+    </dependency>
+
     <!-- Guvnor -->
     <dependency>
       <groupId>org.uberfire</groupId>
@@ -524,6 +549,16 @@
     </dependency>
 
     <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-social-activities-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-social-activities-client</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.kie.workbench.screens</groupId>
       <artifactId>kie-wb-common-examples-screen-api</artifactId>
     </dependency>
@@ -547,20 +582,16 @@
       <artifactId>kie-wb-common-workbench-backend</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.kie.workbench.widgets</groupId>
-      <artifactId>kie-wb-config-resource-widget</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.workbench.widgets</groupId>
-      <artifactId>kie-wb-metadata-widget</artifactId>
-    </dependency>
-
-
     <!-- KIE Workbench Playground Repository -->
     <dependency>
       <groupId>org.kie.workbench.playground</groupId>
       <artifactId>kie-decision-playground</artifactId>
+    </dependency>
+
+    <!-- Drools Workbench REST -->
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-rest-backend</artifactId>
     </dependency>
 
     <!-- Uberfire Widget Backend needed -->
@@ -590,6 +621,48 @@
       <artifactId>uberfire-layout-editor-api</artifactId>
     </dependency>
 
+    <!-- Drools Verifier Web Worker -->
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-verifier-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-verifier-guided-decision-table-adapter</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-verifier-webworker</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-verifier-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-verifier-reporting-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.kie.workbench.widgets</groupId>
+      <artifactId>kie-wb-metadata-widget</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Drools Workbench Screens -->
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-guided-rule-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-guided-rule-editor-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-commons-editor-client</artifactId>
@@ -597,16 +670,12 @@
 
     <dependency>
       <groupId>org.drools</groupId>
-      <artifactId>drools-wb-scenario-simulation-editor-backend</artifactId>
+      <artifactId>${screenModule}-backend</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.drools</groupId>
-      <artifactId>drools-wb-scenario-simulation-editor-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>drools-wb-scenario-simulation-editor-client</artifactId>
+      <artifactId>${screenModule}-api</artifactId>
     </dependency>
 
     <!-- UberFire PlugIn Extension -->
@@ -865,8 +934,8 @@
             </goals>
             <configuration>
               <sources>
-                <source>${project.basedir}/../${screenModule}-client/src/main/java</source>
-                <source>${project.basedir}/../${screenModule}-client/src/main/resources</source>
+                <source>../../drools-wb-clients/${screenModule}-client/src/main/java</source>
+                <source>../../drools-wb-clients/${screenModule}-client/src/main/resources</source>
               </sources>
             </configuration>
           </execution>
@@ -877,14 +946,17 @@
         <artifactId>gwt-maven-plugin</artifactId>
         <configuration>
           <deploy>${project.build.directory}/gwt-symbols-deploy</deploy>
-          <extraJvmArgs>-Xmx5G -Xms1024m -Xss1M -XX:CompileThreshold=7000 -Derrai.jboss.home=${errai.jboss.home} -Derrai.marshalling.server.classOutput=${project.build.outputDirectory} -Derrai.dynamic_validation.enabled=true -Djava.io.tmpdir=${project.build.directory}</extraJvmArgs>
+          <extraJvmArgs>-Xmx8G -Xms1024m -Xss1M -XX:CompileThreshold=7000 -Derrai.jboss.home=${errai.jboss.home} -Derrai.marshalling.server.classOutput=${project.build.outputDirectory} -Derrai.dynamic_validation.enabled=true -Djava.io.tmpdir=${project.build.directory}</extraJvmArgs>
           <module>${package}.DroolsShowcase</module>
-          <logLevel>WARN</logLevel>
+          <logLevel>INFO</logLevel>
           <noServer>false</noServer>
           <server>org.jboss.errai.cdi.server.gwt.EmbeddedWildFlyLauncher</server>
           <disableCastChecking>true</disableCastChecking>
           <runTarget>drools-wb-showcase.html</runTarget>
           <hostedWebapp>src/main/webapp</hostedWebapp>
+          <workDir>${project.build.directory}</workDir>
+          <draftCompile>true</draftCompile>
+
           <compileSourcesArtifacts>
             <compileSourcesArtifact>org.kie.soup:kie-soup-project-datamodel-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.kie.soup:kie-soup-project-datamodel-commons</compileSourcesArtifact>
